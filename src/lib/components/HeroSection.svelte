@@ -132,7 +132,7 @@
               <img
                 src={GiWi}
                 alt="Giddel Wilson"
-                class="object-cover w-full h-full object-bottom"
+                class="object-cover w-full h-full object-bottom inset-0"
               />
             </div>
 
