@@ -130,7 +130,7 @@
             <!-- Image -->
             <div class="aspect-square relative z-10 rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-full">
               <img
-                src={GiWi}
+                src="/src/lib/assets/me2.jpg"
                 alt="Giddel Wilson"
                 class="object-cover w-full h-full object-bottom inset-0"
               />
