@@ -2,7 +2,7 @@
   import Navbar from '$lib/components/Navbar.svelte';
   import { fade, fly } from 'svelte/transition';
   import { onMount } from 'svelte';
-  import GW from '$lib/assets/me4.jpg';
+  import GW from '$lib/assets/me6.png';
 
   let isVisible = false;
   onMount(() => {

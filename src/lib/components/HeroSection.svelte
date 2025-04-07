@@ -33,15 +33,15 @@
   ];
 </script>
 
-<section class="h-max md:h-[calc(100vh+theme(space.6))] lg:h-[calc(100vh-theme(space.6))] relative flex items-center overflow-auto lg:overflow-hidden pt-4 md:pt-[13vh] lg:pt-0 pb-24 md:pb-32 lg:pb-0">
-  <!-- Background Elements -->
+<section class="overflow-hidden h-[100vh] lg:h-[calc(100vh-theme(space.6))] relative flex items-center pt-4 md:pt-[13vh] lg:pt-0 pb-24 lg:pb-0">
+   <!-- Background Elements -->
   <div class="fixed inset-0 -z-10">
     <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10"></div>
     <div class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)] opacity-20"></div>
   </div>
 
   <!-- Content -->
-  <div class="relative w-full max-w-[90%] mx-auto">
+  <div class="relative w-full max-w-[90%] mx-auto overflow-auto scrollbar-hide h-full lg:h-auto select-none">
     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
       <!-- Left Side -->
       {#if isVisible}
@@ -119,7 +119,7 @@
       <!-- Right Side -->
       {#if isVisible}
         <div 
-          class="flex-1 relative"
+          class="flex-1 relative flex justify-evenly pb-20 md:pb-20 lg:pb-0"
           in:fly={{ x: 50, duration: 1000, delay: 200 }}
         >
           <!-- Main Image Container -->
@@ -128,12 +128,16 @@
             <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-3xl blur-3xl"></div>
             
             <!-- Image -->
-            <div class="aspect-square relative z-10 rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-full">
+            <div 
+              class="relative aspect-square rounded-2xl overflow-hidden"
+              in:fly={{ x: 20, duration: 300, delay: 750 }}
+            >
               <img
-                src="/src/lib/assets/me2.jpg"
+                src={GiWi}
                 alt="Giddel Wilson"
-                class="object-cover w-full h-full object-bottom inset-0"
+                class="object-cover w-full h-full rounded-2xl"
               />
+              <div class="absolute object-bottom inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
 
             <!-- Floating Elements -->
@@ -198,5 +202,8 @@
 
   :global(.animate-scroll) {
     animation: scroll 2s ease-in-out infinite;
+  }
+  :global(.scrollbar-hide) {
+    scrollbar-width: none;
   }
 </style>
