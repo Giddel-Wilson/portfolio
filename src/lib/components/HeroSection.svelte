@@ -41,7 +41,7 @@
   </div>
 
   <!-- Content -->
-  <div class="relative w-full max-w-[90%] mx-auto overflow-auto scrollbar-hide h-full lg:h-auto select-none">
+  <div class="relative w-full max-w-[90%] mx-auto overflow-auto lg:overflow-visible scrollbar-hide h-full lg:h-auto select-none">
     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
       <!-- Left Side -->
       {#if isVisible}
