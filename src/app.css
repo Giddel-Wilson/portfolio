@@ -1,0 +1,215 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens — every one of these generates a real Tailwind utility   */
+/* (bg-void, text-secure, font-display, tracking-wide, animate-scrollcue, */
+/* etc.) rather than needing a hand-written CSS class anywhere.           */
+/*                                                                        */
+/* Brand: developer + security analyst. The palette narrates a state      */
+/* change — exposed/breach (amber) hardening into secured (cyan/indigo) — */
+/* the same transition the canvas performs as the page scrolls.           */
+/* ---------------------------------------------------------------------- */
+@theme {
+	--color-void: #000000;
+	--color-void-2: oklch(7% 0.012 260);
+	--color-panel: oklch(10% 0.015 262);
+	--color-ink: oklch(96% 0.008 260);
+	--color-muted: oklch(74% 0.02 260);
+	--color-faint: oklch(46% 0.02 260);
+	--color-line: oklch(32% 0.02 262);
+
+	--color-breach: oklch(68% 0.19 40);
+	--color-breach-dim: oklch(38% 0.1 40);
+	--color-secure: oklch(78% 0.13 195);
+	--color-secure-dim: oklch(40% 0.08 195);
+	--color-signal: oklch(58% 0.2 290);
+
+	--font-display: 'Neue Machina', 'Arial Narrow', system-ui, sans-serif;
+	--font-body: 'Switzer', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+	--text-display-xl: clamp(3.25rem, 3rem + 5vw, 8.5rem);
+	--text-display-lg: clamp(2.5rem, 2rem + 4vw, 5.5rem);
+	--text-display-md: clamp(1.75rem, 1.4rem + 2vw, 3rem);
+
+	/* Overrides Tailwind's default tracking-tight — the one letter-spacing
+	   value genuinely shared everywhere font-display is used. Everything
+	   else uses tracking-[...] directly since the values don't overlap. */
+	--tracking-tight: -0.02em;
+
+	--animate-scrollcue: 2.4s ease-in-out infinite scrollcue;
+	--animate-loader-fade: 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	--animate-fluid-move: scaleToggle 440ms ease;
+	--animate-fluid-stretch: fluidStretch 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes scrollcue {
+	0%,
+	100% {
+		transform: scaleY(0.4);
+		opacity: 0.4;
+	}
+	50% {
+		transform: scaleY(1);
+		opacity: 1;
+	}
+}
+
+/* Custom utilities (Tailwind v4's @utility) for the two things that don't
+   translate cleanly into an arbitrary-value class: a data-URI noise texture
+   and a color-mix() radial gradient. Both are real utility classes once
+   defined here — bg-grain / bg-vignette — used directly in markup. */
+@utility bg-grain {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+@utility bg-vignette {
+	background: radial-gradient(
+		ellipse at center,
+		transparent 45%,
+		color-mix(in oklch, var(--color-void) 65%, transparent) 100%
+	);
+}
+
+@utility bg-canvas-fallback {
+	background:
+		radial-gradient(
+			circle at 65% 45%,
+			color-mix(in oklch, var(--color-secure) 25%, transparent) 0%,
+			transparent 55%
+		),
+		radial-gradient(circle at 30% 75%, var(--color-void-2) 0%, var(--color-void) 70%);
+}
+
+@keyframes scaleToggle {
+  0% { scale: 1 1; }
+  50% { scale: 1.25 0.9; } /* The "Fluid" stretch */
+  100% { scale: 1 1; }
+}
+
+@utility glass-nav-container {
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  --glass-reflex-dark: 2;
+  --glass-reflex-light: 0.3;
+  
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  backdrop-filter: blur(12px) saturate(150%);
+  /* Your exact container shadow stack */
+  box-shadow: 
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+    inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
+    inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent),
+    0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+}
+
+@utility glass-pill-fluid {
+  background-color: color-mix(in srgb, var(--c-glass) 36%, transparent);
+  /* Your exact pill shadow stack */
+  box-shadow: 
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+    inset 2px 1px 0px -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
+    inset -1px 2px 3px -1px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
+    0px 3px 6px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+  
+  /* The fluid transition */
+  transition: 
+    transform 400ms cubic-bezier(1, 0, 0.4, 1),
+    width 400ms cubic-bezier(1, 0, 0.4, 1);
+}
+
+@keyframes fluidStretch {
+	0% { transform: scaleX(1); }
+	50% { transform: scaleX(1.15); }
+	100% { transform: scaleX(1); }
+}
+
+@utility notch-ears {
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		width: 1.5rem;
+		height: 1.25rem;
+		background: radial-gradient(
+			ellipse 100% 100% at 0 0,
+			transparent 100%,
+			var(--color-line) 100%,
+			var(--color-line) calc(100% + 1px),
+			#000 calc(100% + 1px)
+		);
+	}
+	&::before { left: -1.5rem; transform: scaleY(-1); }
+	&::after { right: -1.5rem; transform: scale(-1); }
+}
+
+@utility glass-reflection {
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0.08) 0%,
+		transparent 15%,
+		transparent 100%
+	);
+}
+
+@utility liquid-pill {
+	background-color: rgba(255, 255, 255, 0.08);
+	/* Your glass physics applied to the pill */
+	box-shadow: 
+		inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+		inset 2px 1px 0px -1px rgba(255, 255, 255, 0.2),
+		inset -1px 2px 3px -1px rgba(0, 0, 0, 0.2),
+		0px 4px 12px rgba(0, 0, 0, 0.4);
+	/* Smooth movement transitions */
+	transition: 
+		transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+		width 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+		opacity 0.4s ease;
+}
+
+
+/* Things that can't be an element-level utility class: page defaults,
+   selection color, focus ring, and Lenis's own required hook classes. */
+html {
+	color-scheme: dark;
+	scroll-behavior: auto; /* Lenis owns smoothing; native scroll must not fight it */
+}
+
+body {
+	@apply bg-void text-ink;
+	font-family: var(--font-body);
+	overflow-x: clip;
+}
+
+::selection {
+	@apply bg-breach text-void;
+}
+
+:focus-visible {
+	@apply rounded-sm outline-2 outline-offset-[3px] outline-secure;
+}
+
+/* Lenis requires the document to actually be scrollable via a single root */
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
