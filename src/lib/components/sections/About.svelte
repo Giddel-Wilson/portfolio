@@ -46,7 +46,7 @@
 			class="mb-5 block font-display text-display-md tracking-tight text-balance text-ink"
 		/>
 		<p class="max-w-[34ch] text-base leading-[1.7] text-muted md:ml-auto">
-			I've been shipping production software as a full-stack developer since 2021, and just as long unable to leave what I build alone until I've tried to break it too.
+			I've been shipping production software as a full-stack developer since 2021, and just as long, unable to leave what I build alone until I've tried to break it too.
 		</p>
 	</div>
 

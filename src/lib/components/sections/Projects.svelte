@@ -41,7 +41,15 @@
 				<div class={i % 2 === 1 ? 'md:order-2' : ''}>
 					<span class="font-mono text-[0.75rem] text-faint">{project.year}</span>
 					<h3 class="my-1.5 font-display text-[clamp(2rem,4vw,3.2rem)] leading-[0.98] text-ink">
-						{project.name}
+						<a
+							href={project.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group relative inline-block"
+						>
+							<span class="absolute inset-0 z-10 transition-transform group-hover:translate-y-0.5 group-hover:translate-x-0.5"></span>
+							<span class="relative z-20">{project.name}</span>
+						</a>
 					</h3>
 					<p
 						class="font-mono text-[0.75rem] tracking-[0.04em] {project.state === 'secure'

@@ -2,6 +2,7 @@ export interface Project {
 	id: string;
 	name: string;
 	role: string;
+	url: string;
 	summary: string;
 	details: string[];
 	stack: string[];
@@ -14,6 +15,7 @@ export const projects: Project[] = [
 		id: 'trikride',
 		name: 'TrikRide',
 		role: 'Full-stack · Founding build',
+		url: 'https://trikride.vercel.app/',
 		summary:
 			'A campus tricycle ride-booking platform — live driver matching, real-time booking states, and a race-condition-safe acceptance flow so two riders can never claim the same ride.',
 		details: [
@@ -29,6 +31,7 @@ export const projects: Project[] = [
 		id: 'defensys',
 		name: 'DefenSys',
 		role: 'Final-year research project',
+		url: 'https://defensys.vercel.app/',
 		summary:
 			'A web vulnerability scanner that scores real attack surfaces — OWASP-guided checks fed into a random forest classifier trained to separate genuine findings from noise.',
 		details: [
@@ -44,11 +47,12 @@ export const projects: Project[] = [
 		id: 'endtoend',
 		name: 'EndToEnd Encrypt',
 		role: 'Full-stack · Security architecture',
+		url: 'https://en2en.vercel.app/',
 		summary:
 			'Secure file storage where the server never sees plaintext files or keys — encryption happens entirely client-side before a byte leaves the browser.',
 		details: [
 			'AES-GCM and ChaCha20-Poly1305 for file payloads, RSA-OAEP and ECDH for key exchange',
-			'Zero-knowledge auth flow issuing JWTs without the server ever holding a derivable secret',
+			'Session auth (Argon2id + JWT) is cryptographically isolated from the client-side key-wrapping secret, therefore compromising the auth database exposes no path to decrypt stored files.',
 			'Argon2id and PBKDF2 for key derivation, soft-delete and listing endpoints on Neon Postgres'
 		],
 		stack: ['SvelteKit', 'Web Crypto API', 'jose (JWT)', 'Neon Postgres'],
