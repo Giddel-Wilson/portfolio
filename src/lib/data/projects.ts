@@ -12,25 +12,25 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		id: 'trikride',
-		name: 'TrikRide',
-		role: 'Full-stack · Founding build',
-		url: 'https://trikride.vercel.app/',
-		summary:
-			'A campus tricycle ride-booking platform — live driver matching, real-time booking states, and a race-condition-safe acceptance flow so two riders can never claim the same ride.',
-		details: [
-			'Real-time booking, decline tracking and driver availability over Pusher Channels',
-			'Race-condition prevention on ride acceptance, built to hold up under concurrent requests',
-			'Paginated reviews and a map/panel layout tuned for one-handed use on campus routes'
-		],
-		stack: ['SvelteKit', 'Bun', 'Drizzle ORM', 'Neon Postgres', 'Tailwind CSS v4', 'Pusher'],
-		state: 'breach',
-		year: '2026'
-	},
+    id: 'redline',
+    name: 'Redline',
+    role: 'Full-stack · Browser extension + dashboard',
+    url: 'https://redlinesuite.vercel.app/',
+    summary:
+        'A browser extension and dashboard for authorized penetration testing and bug bounty work — a payload library that reads the page you\'re on, passive recon over certificate-transparency logs, and severity-sorted PDF reports ready to submit.',
+    details: [
+        'Context-aware payload suggestions, the extension reads the live page and ranks categories against it instead of listing all ten',
+        'Passive recon via certificate-transparency lookups and header/markup fingerprinting, with SSRF guards on every server-side fetch of a user-supplied URL',
+        'Auth built on Better Auth for email verification, password reset, and rate-limited endpoints, hardened for real users rather than left on defaults'
+    ],
+    stack: ['SvelteKit', 'TypeScript', 'Drizzle ORM', 'Neon Postgres', 'Better Auth', 'Manifest V3', 'Brevo'],
+    state: 'breach',
+    year: '2026'
+},
 	{
 		id: 'defensys',
 		name: 'DefenSys',
-		role: 'Final-year project — full-stack security scanning platform',
+		role: 'Final-year project · Full-stack · Security scanning platform',
 		url: 'https://defensys.fly.dev/',
 		summary:
 			'A web vulnerability scanner that runs real OWASP Top 10-guided checks (nmap, sqlmap, nikto, sslscan, gobuster, whatweb) and feeds the results through an AI triage layer that clusters and scores findings to cut out noise.',
