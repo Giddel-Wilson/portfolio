@@ -31,7 +31,7 @@ export const projects: Project[] = [
 		id: 'defensys',
 		name: 'DefenSys',
 		role: 'Final-year research project',
-		url: 'https://defensys.vercel.app/',
+		url: 'https://defensys.fly.dev/',
 		summary:
 			'A web vulnerability scanner that scores real attack surfaces — OWASP-guided checks fed into a random forest classifier trained to separate genuine findings from noise.',
 		details: [
