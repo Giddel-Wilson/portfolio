@@ -30,16 +30,16 @@ export const projects: Project[] = [
 	{
 		id: 'defensys',
 		name: 'DefenSys',
-		role: 'Final-year research project',
+		role: 'Final-year project — full-stack security scanning platform',
 		url: 'https://defensys.fly.dev/',
 		summary:
-			'A web vulnerability scanner that scores real attack surfaces — OWASP-guided checks fed into a random forest classifier trained to separate genuine findings from noise.',
+			'A web vulnerability scanner that runs real OWASP Top 10-guided checks (nmap, sqlmap, nikto, sslscan, gobuster, whatweb) and feeds the results through an AI triage layer that clusters and scores findings to cut out noise.',
 		details: [
-			'Automated crawling and probing across the OWASP Top 10 categories',
-			'Random forest model trained to reduce false positives against hand-labelled scan data',
-			'Built as a DevSecOps tool — the aim is a scanner a team would actually keep in CI'
+			'Automated scan pipeline across OWASP Top 10 categories: SQL injection, XSS, auth testing, header analysis, SSL/TLS, port scanning, API discovery, tech fingerprinting',
+			'AI triage layer (Qwen models via DashScope) clusters and scores raw findings, generating remediation guidance and cutting false positives',
+			'Full-stack platform with auth, per-scan dashboards, and exportable PDF reports — built as a tool a team could actually run in CI, not just a scan-and-print script'
 		],
-		stack: ['Python', 'Scikit-learn', 'OWASP guidelines', 'Web crawling'],
+		stack: ['SvelteKit', 'TypeScript', 'Bun', 'Prisma', 'Neon PostgreSQL', 'Qwen / DashScope'],
 		state: 'breach',
 		year: '2026'
 	},
